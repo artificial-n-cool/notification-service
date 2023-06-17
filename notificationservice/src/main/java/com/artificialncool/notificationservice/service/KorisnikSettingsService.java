@@ -22,6 +22,10 @@ public class KorisnikSettingsService {
                 .orElseThrow(()-> new EntityNotFoundException("Nema settings za ovog korisnika"));
     }
 
+
+    public KorisnikSettings createNewKorisnikSettings(KorisnikSettings korisnikSettings){
+        return korisnikSettingsRepository.save(korisnikSettings);
+    }
     public KorisnikSettings updateNotificationsPreference(String username, NotificationSettingsDTO dto) throws EntityNotFoundException{
             KorisnikSettings korisnikSettings = korisnikSettingsRepository.findByUsername(username).orElseThrow(()-> new EntityNotFoundException("Nema ovog korisnika"));
             korisnikSettings.setGuest_hostAnsweredReservation(dto.isGuest_hostAnsweredReservation());
