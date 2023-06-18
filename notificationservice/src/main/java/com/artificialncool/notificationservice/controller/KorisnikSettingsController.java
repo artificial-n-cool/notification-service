@@ -18,6 +18,12 @@ public class KorisnikSettingsController {
 
     private final KorisnikSettingsService korisnikSettingsService;
 
+    @GetMapping(value = "/hello")
+    public ResponseEntity<String> hello(){
+        return new ResponseEntity<>("HELLO FROM NOTIFICATION/SETTING SERVICE", HttpStatus.OK);
+    }
+
+
     @GetMapping(value = "username/{username}")
     public ResponseEntity<KorisnikSettings> getByUsername(@PathVariable String username){
         try{
