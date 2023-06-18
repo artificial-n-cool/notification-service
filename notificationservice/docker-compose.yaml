@@ -19,7 +19,7 @@ services:
     container_name: mongo-db
     restart: always
     ports:
-      - 27017:27017
+      - "27019:27017"
     volumes:
       - notification-data:/data/db
 
