@@ -24,6 +24,11 @@ public class KorisnikSettingsController {
     }
 
 
+    @PutMapping(value = "/changeUsername/{oldtUsername}/{newUsername}")
+    public ResponseEntity<Void> changeUsername(@PathVariable String oldUsername, @PathVariable String newUsername){
+        KorisnikSettings korisnikSettings = korisnikSettingsService.changeUsername(oldUsername, newUsername);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     @GetMapping(value = "username/{username}")
     public ResponseEntity<KorisnikSettings> getByUsername(@PathVariable String username){
         try{
