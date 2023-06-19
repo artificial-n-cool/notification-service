@@ -23,6 +23,19 @@ public class KorisnikSettingsService {
     }
 
 
+    public KorisnikSettings changeUsername(String oldUsername, String newUsername) throws EntityNotFoundException{
+        try {
+            KorisnikSettings korisnikSettings = korisnikSettingsRepository.findByUsername(oldUsername).orElseThrow();
+            korisnikSettings.setUsername(newUsername);
+            return korisnikSettingsRepository.save(korisnikSettings);
+        }
+        catch (EntityNotFoundException ex){
+
+        }
+
+        return null;
+    }
+
     public KorisnikSettings createNewKorisnikSettings(KorisnikSettings korisnikSettings){
         return korisnikSettingsRepository.save(korisnikSettings);
     }

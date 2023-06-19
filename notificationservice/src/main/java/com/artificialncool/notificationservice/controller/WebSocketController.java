@@ -41,7 +41,7 @@ public class WebSocketController {
     @MessageMapping("/send/message/Guest_hostAnsweredReservation")
     public MessageDTO sendHostReservationNotification(MessageDTO message) throws NoSuchFieldException, IllegalAccessException {
 
-        if (message != null && checkSettinsForNotification(message.getReceiverID(), "Guest_hostAnsweredReservation" )) {
+        if (message != null && checkSettingsForNotification(message.getReceiverID(), "Guest_hostAnsweredReservation" )) {
             if (!message.getReceiverID().equals("")) {
                 this.simpMessagingTemplate.convertAndSend("/socket-publisher/Guest_hostAnsweredReservation" + message.getReceiverID(),
                         message);
@@ -56,7 +56,7 @@ public class WebSocketController {
     @MessageMapping("/send/message/Host_createdReservation")
     public MessageDTO sendCreatedReservationNotification(MessageDTO message) throws NoSuchFieldException, IllegalAccessException {
 
-        if (message != null  && checkSettinsForNotification(message.getReceiverID(), "Host_createdReservation" )) {
+        if (message != null  && checkSettingsForNotification(message.getReceiverID(), "Host_createdReservation" )) {
             if (!message.getReceiverID().equals("")) {
                 this.simpMessagingTemplate.convertAndSend("/socket-publisher/Host_createdReservation" + message.getReceiverID(),
                         message);
@@ -70,7 +70,7 @@ public class WebSocketController {
 
     @MessageMapping("/send/message/Host_automaticAcceptance")
     public MessageDTO sendautomaticAcceptance(MessageDTO message) throws NoSuchFieldException, IllegalAccessException {
-        if (message != null  && checkSettinsForNotification(message.getReceiverID(), "Host_automaticAcceptance" )) {
+        if (message != null  && checkSettingsForNotification(message.getReceiverID(), "Host_automaticAcceptance" )) {
             if (!message.getReceiverID().equals("")) {
                 this.simpMessagingTemplate.convertAndSend("/socket-publisher/Host_automaticAcceptance" + message.getReceiverID(),
                         message);
@@ -87,7 +87,7 @@ public class WebSocketController {
     @MessageMapping("/send/message/Host_hostBeenRated")
     public MessageDTO sendhostBeenRated(MessageDTO message) throws NoSuchFieldException, IllegalAccessException {
 
-        if (message != null  && checkSettinsForNotification(message.getReceiverID(), "Host_hostBeenRated" )) {
+        if (message != null  && checkSettingsForNotification(message.getReceiverID(), "Host_hostBeenRated" )) {
             if (!message.getReceiverID().equals("")) {
                 this.simpMessagingTemplate.convertAndSend("/socket-publisher/Host_hostBeenRated" + message.getReceiverID(),
                         message);
@@ -103,7 +103,7 @@ public class WebSocketController {
     @MessageMapping("/send/message/Host_cancelledReservation")
     public MessageDTO sendcancelledReservation(MessageDTO message) throws NoSuchFieldException, IllegalAccessException {
 
-        if (message != null  && checkSettinsForNotification(message.getReceiverID(), "Host_cancelledReservation" )) {
+        if (message != null  && checkSettingsForNotification(message.getReceiverID(), "Host_cancelledReservation" )) {
             if (!message.getReceiverID().equals("")) {
                 this.simpMessagingTemplate.convertAndSend("/socket-publisher/Host_cancelledReservation" + message.getReceiverID(),
                         message);
@@ -118,7 +118,7 @@ public class WebSocketController {
     @MessageMapping("/send/message/Host_stayBeenRated")
     public MessageDTO sendstayBeenRated(MessageDTO message) throws NoSuchFieldException, IllegalAccessException {
 
-        if (message != null && checkSettinsForNotification(message.getReceiverID(), "Host_stayBeenRated" )) {
+        if (message != null && checkSettingsForNotification(message.getReceiverID(), "Host_stayBeenRated" )) {
             if (!message.getReceiverID().equals("")) {
                 this.simpMessagingTemplate.convertAndSend("/socket-publisher/Host_stayBeenRated" + message.getReceiverID(),
                         message);
@@ -130,7 +130,7 @@ public class WebSocketController {
         return message;
     }
 
-    private boolean checkSettinsForNotification(String username, String notification) throws NoSuchFieldException, IllegalAccessException {
+    private boolean checkSettingsForNotification(String username, String notification) throws NoSuchFieldException, IllegalAccessException {
 
         try {
             KorisnikSettings korisnikSettings = korisnikSettingsService.getByUsername(username);
