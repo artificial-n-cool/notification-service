@@ -36,6 +36,4 @@ public class KorisnikSettings {
 
     private boolean Host_automaticAcceptance;
 
-
-
 }
