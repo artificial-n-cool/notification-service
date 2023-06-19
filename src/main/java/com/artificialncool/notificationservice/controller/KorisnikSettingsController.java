@@ -45,6 +45,7 @@ public class KorisnikSettingsController {
         return new ResponseEntity<>(korisnikSettingsService.createNewKorisnikSettings(korisnikSettings), HttpStatus.CREATED);
     }
 
+
     @PutMapping(value = "/changeUserSettings")
     public ResponseEntity<Void> changeUserSettings(@RequestBody NotificationSettingsDTO dto) {
         korisnikSettingsService.updateNotificationsPreference(dto.getKorisnikID(), dto);
