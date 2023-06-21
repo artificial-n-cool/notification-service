@@ -44,7 +44,7 @@ jobs:
         run: docker-compose build
 
       - name: Docker Tag
-        run: docker tag notificationservice_notification-app matijamatovic/devops-notification-service
+        run: docker tag notification-service_notification-app matijamatovic/devops-notification-service
 
       - name: Docker Deploy
         run: docker push ${{secrets.DOCKER_USERNAME}}/devops-notification-service
