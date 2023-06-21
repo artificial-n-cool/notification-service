@@ -1,6 +1,6 @@
 build:
 	docker-compose build
-	docker-compose up  # -d
+	docker-compose up
 clean:
 	docker stop notifications-app
 	docker stop mongo-db-notifications
