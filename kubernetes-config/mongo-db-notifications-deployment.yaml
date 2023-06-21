@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mongo-db-notifications
+  name: mongo-db-notifications
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mongo-db-notifications
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/app-net: "true"
+        io.kompose.service: mongo-db-notifications
+    spec:
+      containers:
+        - image: mongo
+          name: mongo-db-notifications
+          ports:
+            - containerPort: 27017
+          resources: {}
+          volumeMounts:
+            - mountPath: /data/db
+              name: notification-data
+      restartPolicy: Always
+      volumes:
+        - name: notification-data
+          persistentVolumeClaim:
+            claimName: notification-data
+status: {}

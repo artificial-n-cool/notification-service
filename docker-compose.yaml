@@ -12,7 +12,8 @@ services:
       - SPRING_DATA_MONGODB_HOST=mongo-db-notifications
       - SPRING_DATA_MONGODB_PORT=27017
       - SPRING_DATA_MONGODB_DATABASE=notification-db
-
+    networks:
+      - database-net
 
   mongo-db-notifications:
     image: "mongo"
@@ -22,8 +23,14 @@ services:
       - "27019:27017"
     volumes:
       - notification-data:/data/db
+    networks:
+      - database-net
 
 
 volumes:
   notification-data:
 
+networks:
+  database-net:
+    external:
+      name: app-net

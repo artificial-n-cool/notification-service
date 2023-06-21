@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: notifications-app
+  name: notifications-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: notifications-app
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/app-net: "true"
+        io.kompose.service: notifications-app
+    spec:
+      containers:
+        - env:
+            - name: SPRING_DATA_MONGODB_DATABASE
+              value: notification-db
+            - name: SPRING_DATA_MONGODB_HOST
+              value: mongo-db-notifications
+            - name: SPRING_DATA_MONGODB_PORT
+              value: "27017"
+          image: notifications-app
+          name: notifications-app
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}
