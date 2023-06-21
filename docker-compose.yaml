@@ -1,0 +1,29 @@
+version: "2.0"
+services:
+  notifications-app:
+    container_name: notifications-app
+    build: .
+    restart: always
+    ports:
+      - "9090:8080"
+    depends_on:
+      - mongo-db-notifications
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongo-db-notifications
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=notification-db
+
+
+  mongo-db-notifications:
+    image: "mongo"
+    container_name: mongo-db-notifications
+    restart: always
+    ports:
+      - "27019:27017"
+    volumes:
+      - notification-data:/data/db
+
+
+volumes:
+  notification-data:
+
