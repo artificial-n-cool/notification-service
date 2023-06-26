@@ -32,3 +32,21 @@ jobs:
 
       - name: Run tests
         run: mvn test  # --quiet
+
+      - name: Set version
+        run: |
+            export GIT_COMMIT=$(git rev-parse HEAD)
+            export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+            echo "GIT_COMMIT=$GIT_COMMIT" >> $GITHUB_ENV
+            echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
+
+      - name: Bump version
+        id: bump_version
+        uses: micheljansen/semantic-release-action@v2
+        with:
+          pre-release-name: 'beta'
+
+      - name: Create release
+        run: |
+                echo "New version: ${{ steps.bump_version.outputs.new_version }}"
+                # Perform any release-related actions here
