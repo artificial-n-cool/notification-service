@@ -42,9 +42,7 @@ jobs:
 
       - name: Bump version
         id: bump_version
-        uses: semantic-release/github-action@v3
-        with:
-            pre-release: 'beta'
+        uses: mathieudutour/semantic-pull-request@v5
 
       - name: Create release
         run: |
