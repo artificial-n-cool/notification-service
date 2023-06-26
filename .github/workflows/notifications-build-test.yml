@@ -42,17 +42,14 @@ jobs:
 
       - name: Bump version
         id: bump_version
-        uses: wyrihaximus/github-action-version@master
-        with:
-            version_file: 'pom.xml'
-            push: false
+        uses: semantic-release/action@v2
 
       - name: Create release
         uses: actions/create-release@v1
         env:
               GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         with:
-            tag_name: ${{ steps.bump_version.outputs.new_tag }}
-            release_name: Release ${{ steps.bump_version.outputs.new_tag }}
-            draft: false
-            prerelease: false
+                tag_name: ${{ steps.bump_version.outputs.nextRelease.version }}
+                release_name: Release ${{ steps.bump_version.outputs.nextRelease.version }}
+                draft: false
+                prerelease: false
