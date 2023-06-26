@@ -42,9 +42,9 @@ jobs:
 
       - name: Bump version
         id: bump_version
-        uses: micheljansen/semantic-release-action@v2
+        uses: semantic-release/github-action@v3
         with:
-          pre-release-name: 'beta'
+            pre-release: 'beta'
 
       - name: Create release
         run: |
